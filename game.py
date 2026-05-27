@@ -1,6 +1,5 @@
 import os
-import time
-#from math import randomas 
+import time 
 import sqlite3
 import sys
 players=["Adams","Hillary","Julian","Alves","Jonson","Snoop","Albert"]
@@ -12,13 +11,13 @@ def create_database():
     conn = sqlite3.connect(db)
     cursor = conn.cursor()
     cursor.execute("""CREATE TABLE if not exists status(
-    id int primary key unique not null,
+    id integer AUTOINCREMENT primary key unique not null,
     player varchar(20) unique not null,
-    wallet int not null,
+    wallet integer not null,
     gold int default 0,
     diamon int default 0    
     )""")
-    cursor.execute("INSERT INTO status(id, player,wallet) values(?,?,?) ", (1, players[0], wallet))
+    cursor.execute("INSERT INTO status( player,wallet) values(?,?,?) ", (players[0], wallet))
     print("Process complete!")
     conn.commit()
     conn.close()
